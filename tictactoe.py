@@ -2,7 +2,6 @@ from textwrap import wrap
 
 user_input = input("Enter cells: ")
 table = [wrap(x, 1) for x in wrap(user_input, 3)]
-print(table)
 sep_line = "-" * 9
 line = "|"
 
@@ -57,7 +56,7 @@ elif check_win("X"):
     print("X wins")
 elif check_win("O"):
     print("O wins")
-elif check_empty_cells() and not check_win("X") and not check_win("O"):
+elif check_empty_cells():
     print("Game not finished")
 elif not check_empty_cells():
     print("Draw")
