@@ -1,13 +1,13 @@
 from textwrap import wrap
 
-user_input = input("Enter cells: ")
-table = [wrap(x, 1) for x in wrap(user_input, 3)]
+
+table = [[' ', ' ', ' '], [' ', ' ', ' '], [' ', ' ', ' ']]
 sep_line = "-" * 9
 line = "|"
 test = '123456789 '
 test2 = '123 '
 isTrue = True
-print(table)
+last_player = "O"
 
 
 def count_cmb(smb):  # counts X or O in table
@@ -40,7 +40,7 @@ def print_row(row_number):
 
 
 def check_empty_cells():
-    return "_" in [elem for sublist in table for elem in sublist]
+    return " " in [elem for sublist in table for elem in sublist]
 
 
 def result():
@@ -121,8 +121,13 @@ while isTrue:
         x = 0
         y = 0
         damn_table(user_move)
-        if table[x][y] == "_":
-            table[x][y] = "X"
+        if table[x][y] == " ":
+            if last_player == "O":
+                table[x][y] = "X"
+                last_player = "X"
+            else:
+                table[x][y] = "O"
+                last_player = "O"
             print(f"""
 {sep_line}
 {line} {print_row(0)} {line}
@@ -130,7 +135,7 @@ while isTrue:
 {line} {print_row(2)} {line}
 {sep_line}""")
             result()
-            break  # continue
+            continue
         else:
             print("This cell is occupied! Choose another one!")
             continue
